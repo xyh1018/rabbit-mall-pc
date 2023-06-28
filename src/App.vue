@@ -1,21 +1,21 @@
 <template>
-  <div>{{ $store.state.user.username }}</div>
-  <button @click="setName">改变用户名</button>
+  <!--    一级路由出口-->
+  <router-view></router-view>
 </template>
 <script>
-import { useStore } from 'vuex'
+import { login } from '@/api/user'
 
 export default {
   setup () {
-    const store = useStore()
-
-    function setName () {
-      console.log(store)
-      store.commit('user/setName', '苏巧玉')
+    function loginFn () {
+      login({
+        account: 'demo',
+        password: 'hm#qd@23!'
+      })
     }
 
     return {
-      setName
+      loginFn
     }
   }
 }

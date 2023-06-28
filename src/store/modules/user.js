@@ -10,13 +10,12 @@ export default {
         account: '',
         mobile: '',
         token: ''
-      },
-      username: '夏远浩'
+      }
     }
   },
   mutations: {
-    setName (state, data) {
-      state.username = data
+    setUser (state, data) {
+      state.profile = data
     }
   }
 }
