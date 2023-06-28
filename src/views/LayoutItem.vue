@@ -13,3 +13,7 @@ export default {
   name: 'LayoutItem'
 }
 </script>
+
+<style lang="less">
+
+</style>
