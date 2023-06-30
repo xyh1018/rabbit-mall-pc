@@ -17,9 +17,9 @@ request.interceptors.request.use(
   }
 )
 request.interceptors.response.use(
-  (respones) => {
-    console.log(respones)
-    return respones.data
+  (response) => {
+    console.log(response)
+    return response.data
   }, (error) => {
     console.log(error)
     const code = error.response.status

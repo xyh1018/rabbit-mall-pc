@@ -1,19 +1,30 @@
 <template>
-  <nav>头部导航栏</nav>
-  <header>头部组件</header>
+  <AppNavbar></AppNavbar>
+  <AppHeader></AppHeader>
   <div class="main">
     <!--二级路由入口-->
     <router-view></router-view>
   </div>
-  <footer>底部组件</footer>
+  <AppFooter></AppFooter>
 </template>
 
 <script>
+import AppNavbar from '@/components/app-navbar.vue'
+import AppHeader from '@/components/app-header.vue'
+import AppFooter from '@/components/app-footer.vue'
+
 export default {
-  name: 'LayoutItem'
+  name: 'LayoutItem',
+  components: {
+    AppNavbar,
+    AppHeader,
+    AppFooter
+  }
 }
 </script>
 
 <style lang="less">
-
+.main {
+  height: 1000px;
+}
 </style>
