@@ -4,20 +4,7 @@
       <div class="left">
         <img class="logo" src="@/assets/images/logo-rabbit.png" alt="网站logo">
       </div>
-      <div class="main-content">
-        <ul class="sortMenu">
-          <li><a href="#">首页</a></li>
-          <li><a href="#">居家</a></li>
-          <li><a href="#">美食</a></li>
-          <li><a href="#">服饰</a></li>
-          <li><a href="#">母婴</a></li>
-          <li><a href="#">个护</a></li>
-          <li><a href="#">严选</a></li>
-          <li><a href="#">数码</a></li>
-          <li><a href="#">运动</a></li>
-          <li><a href="#">杂项</a></li>
-        </ul>
-      </div>
+      <AppHeaderNav></AppHeaderNav>
       <div class="right">
         <div class="search">
           <i class="iconfont icon-sousuoxiao"></i>
@@ -32,8 +19,13 @@
 </template>
 
 <script>
+import AppHeaderNav from '@/components/app-header-nav.vue'
+
 export default {
   name: 'AppHeader',
+  components: {
+    AppHeaderNav
+  },
   setup () {
 
   }
@@ -53,34 +45,6 @@ export default {
       .logo {
         width: 200px;
         padding-bottom: 15px;
-      }
-    }
-
-    .main-content {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-
-      .sortMenu {
-        display: flex;
-
-        li {
-          height: 132px;
-          line-height: 132px;
-          margin-right: 40px;
-
-          a {
-            font-size: 16px;
-
-            &:hover {
-              color: #34b99b
-            }
-          }
-        }
-
-        li:first-child {
-          padding-left: 40px;
-        }
       }
     }
 

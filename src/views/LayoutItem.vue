@@ -1,6 +1,7 @@
 <template>
   <AppNavbar></AppNavbar>
   <AppHeader></AppHeader>
+  <AppHeaderFixed></AppHeaderFixed>
   <div class="main">
     <!--二级路由入口-->
     <router-view></router-view>
@@ -12,13 +13,20 @@
 import AppNavbar from '@/components/app-navbar.vue'
 import AppHeader from '@/components/app-header.vue'
 import AppFooter from '@/components/app-footer.vue'
+import AppHeaderFixed from '@/components/app-header-fixed.vue'
+import { useStore } from 'vuex'
 
 export default {
   name: 'LayoutItem',
   components: {
     AppNavbar,
     AppHeader,
-    AppFooter
+    AppFooter,
+    AppHeaderFixed
+  },
+  setup () {
+    const store = useStore()
+    store.dispatch('category/getList')
   }
 }
 </script>
@@ -26,5 +34,9 @@ export default {
 <style lang="less">
 .main {
   height: 1000px;
+}
+
+.app-header-fixed {
+
 }
 </style>
