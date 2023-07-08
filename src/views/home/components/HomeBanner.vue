@@ -7,10 +7,8 @@
 <script>
 import { getBanner } from '@/api/home'
 import { onMounted, ref } from 'vue'
-import XtxCarousel from '@/components/library/xtx-carousel.vue'
 
 export default {
-  components: { XtxCarousel },
   setup () {
     const bannerList = ref([])
     const getBannerApi = async () => {

@@ -6,9 +6,7 @@
 
 <script>
 export default {
-  setup () {
-
-  },
+  name: 'XtxSkeleton',
   props: {
     width: {
       type: String,

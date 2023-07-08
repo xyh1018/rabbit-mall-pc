@@ -2,7 +2,7 @@
   <AppNavbar></AppNavbar>
   <AppHeader></AppHeader>
   <AppHeaderFixed></AppHeaderFixed>
-  <div class="main">
+  <div class="app-body">
     <!--二级路由入口-->
     <router-view></router-view>
   </div>
@@ -32,8 +32,8 @@ export default {
 </script>
 
 <style lang="less">
-.main {
-  height: 1000px;
+.app-body {
+
 }
 
 .app-header-fixed {

@@ -24,6 +24,7 @@
 import { onMounted, onUnmounted, ref, watch } from 'vue'
 
 export default {
+  name: 'XtxCarousel',
   props: {
     // 轮播图数组
     bannerList: {

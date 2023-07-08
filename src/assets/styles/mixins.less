@@ -1,1 +1,8 @@
 // 样式重用
+.hoverShadow () {
+  &:hover {
+    transition: all .5s;
+    transform: translate3d(0, -3px, 0);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  }
+}
