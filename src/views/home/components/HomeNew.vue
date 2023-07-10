@@ -5,15 +5,18 @@
         <XtxMore></XtxMore>
       </template>
     </HomePanel>
-    <ul class="new-list">
-      <li class="new-item" v-for="item in newList" :key="item.id">
-        <RouterLink to="/">
-          <img class="new-item-img" :src="item.picture" alt="">
-          <span class="new-item-name ellipsis">{{ item.name }}</span>
-          <span class="new-item-price">{{ item.price }}</span>
-        </RouterLink>
-      </li>
-    </ul>
+    <transition name="fade">
+      <ul v-if="newList.length" class="new-list">
+        <li class="new-item" v-for="item in newList" :key="item.id">
+          <RouterLink to="/">
+            <img class="new-item-img" :src="item.picture" alt="">
+            <span class="new-item-name ellipsis">{{ item.name }}</span>
+            <span class="new-item-price">{{ item.price }}</span>
+          </RouterLink>
+        </li>
+      </ul>
+      <HomeSkeleton v-else></HomeSkeleton>
+    </transition>
   </div>
 
 </template>
@@ -22,10 +25,12 @@
 import HomePanel from '@/views/home/components/HomePanel.vue'
 import { getNew } from '@/api/home'
 import { onMounted, ref } from 'vue'
+import HomeSkeleton from '@/views/home/components/HomeSkeleton.vue'
 
 export default {
   name: 'HomeNew',
   components: {
+    HomeSkeleton,
     HomePanel
   },
   setup () {
@@ -73,13 +78,5 @@ export default {
       justify-content: center;
     }
   }
-}
-
-.ellipsis {
-  display: block;
-  width: 100%; /* 自定义容器宽度 */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 </style>

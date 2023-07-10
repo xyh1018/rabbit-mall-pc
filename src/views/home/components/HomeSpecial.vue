@@ -140,12 +140,4 @@ export default {
     }
   }
 }
-
-.ellipsis {
-  display: block;
-  width: 100%; /* 自定义容器宽度 */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 </style>

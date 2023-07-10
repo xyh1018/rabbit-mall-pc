@@ -71,21 +71,6 @@ ul {
   position: relative;
 }
 
-.ellipsis {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
-.ellipsis-2 {
-  word-break: break-all;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-}
-
 .fl {
   float: left;
 }
@@ -101,4 +86,27 @@ ul {
   height: 0;
   line-height: 0;
   clear: both;
+}
+
+.fade {
+  &-leave {
+    &-active {
+      position: absolute;
+      width: 100%;
+      transition: opacity .5s .2s;
+      z-index: 1;
+    }
+
+    &-to {
+      opacity: 0;
+    }
+  }
+}
+
+.ellipsis {
+  display: block;
+  width: 100%; /* 自定义容器宽度 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

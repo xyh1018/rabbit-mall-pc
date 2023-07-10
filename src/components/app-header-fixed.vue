@@ -1,21 +1,19 @@
 <template>
   <div class="app-header-fixed" :class="{show: y>78}">
-    <div class="bg">
-      <div class="container layout">
-        <div class="left">
-          <img class="logo" src="@/assets/images/logo-rabbit.png" alt="网站logo">
-        </div>
-        <appHeaderNav></appHeaderNav>
-        <div class="right">
-          <ul class="right-item">
-            <li>
-              <RouterLink to="/">品牌</RouterLink>
-            </li>
-            <li>
-              <RouterLink to="/">专题</RouterLink>
-            </li>
-          </ul>
-        </div>
+    <div class="container layout">
+      <div class="left">
+        <img class="logo" src="@/assets/images/logo-rabbit.png" alt="网站logo">
+      </div>
+      <appHeaderNav></appHeaderNav>
+      <div class="right">
+        <ul class="right-item">
+          <li>
+            <RouterLink to="/">品牌</RouterLink>
+          </li>
+          <li>
+            <RouterLink to="/">专题</RouterLink>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -49,6 +47,7 @@ export default {
 <style scoped lang="less">
 .app-header-fixed {
   background: white;
+  width: 100%;
   height: 80px;
   position: fixed;
   left: 50%;
@@ -61,10 +60,6 @@ export default {
   &.show {
     transform: translateX(-50%) translateY(0);
     opacity: 1;
-  }
-
-  .bg {
-    width: 100vw;
   }
 
   .layout {
