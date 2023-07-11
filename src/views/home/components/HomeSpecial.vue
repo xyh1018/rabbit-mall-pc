@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div ref="target" class="container">
     <HomePanel title="最新专题">
       <template #right>
         <XtxMore></XtxMore>
@@ -38,23 +38,24 @@
 
 <script>
 import HomePanel from '@/views/home/components/HomePanel.vue'
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import { getSpecial } from '@/api/home'
+import { useLazyData } from '@/utils/tools'
 
 export default {
   name: 'HomeSpecial',
   components: { HomePanel },
   setup () {
     const newList = ref([])
+    const target = ref(null)
     const getSpecialApi = async () => {
       const { result } = await getSpecial()
       newList.value = result
     }
-    onMounted(() => {
-      getSpecialApi()
-    })
+    useLazyData(target, getSpecialApi)
     return {
-      newList
+      newList,
+      target
     }
   }
 }
@@ -69,6 +70,7 @@ export default {
     width: 404px;
     .hoverShadow();
     background: white;
+    transition: all 0.5s;
 
     .title-a {
       position: relative;

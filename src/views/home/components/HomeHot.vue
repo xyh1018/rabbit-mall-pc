@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div ref="target" class="container">
     <HomePanel title="人气推荐" subtitle="人气爆款 不容错过"></HomePanel>
     <transition name="fade">
       <ul v-if="newList.length" class="new-list">
@@ -18,9 +18,10 @@
 
 <script>
 import HomePanel from '@/views/home/components/HomePanel.vue'
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import { getHot } from '@/api/home'
 import HomeSkeleton from '@/views/home/components/HomeSkeleton.vue'
+import { useLazyData } from '@/utils/tools'
 
 export default {
   name: 'HomeHot',
@@ -30,15 +31,15 @@ export default {
   },
   setup () {
     const newList = ref([])
+    const target = ref(null)
     const getHotApi = async () => {
       const { result } = await getHot()
       newList.value = result
     }
-    onMounted(() => {
-      getHotApi()
-    })
+    useLazyData(target, getHotApi)
     return {
-      newList
+      newList,
+      target
     }
   }
 }
@@ -51,6 +52,7 @@ export default {
 
   .new-item {
     width: 305px;
+    transition: all 0.5s;
     .hoverShadow();
 
     &-img {

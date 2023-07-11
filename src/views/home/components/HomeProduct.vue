@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div ref="target" class="container">
     <ul>
       <li v-for="item in productList" :key="item.id">
         <HomePanel :title="item.name">
@@ -39,21 +39,22 @@
 <script>
 import HomePanel from '@/views/home/components/HomePanel.vue'
 import { getProduct } from '@/api/home'
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
+import { useLazyData } from '@/utils/tools'
 
 export default {
   components: { HomePanel },
   setup () {
     const productList = ref([])
+    const target = ref(null)
     const getProductApi = async () => {
       const { result } = await getProduct()
       productList.value = result
     }
-    onMounted(() => {
-      getProductApi()
-    })
+    useLazyData(target, getProductApi)
     return {
-      productList
+      productList,
+      target
     }
   }
 }

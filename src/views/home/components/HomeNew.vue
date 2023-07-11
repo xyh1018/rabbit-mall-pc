@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" ref="target">
     <HomePanel title="新鲜好物" subtitle="新鲜出炉 品质靠谱">
       <template #right>
         <XtxMore></XtxMore>
@@ -24,8 +24,9 @@
 <script>
 import HomePanel from '@/views/home/components/HomePanel.vue'
 import { getNew } from '@/api/home'
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import HomeSkeleton from '@/views/home/components/HomeSkeleton.vue'
+import { useLazyData } from '@/utils/tools'
 
 export default {
   name: 'HomeNew',
@@ -35,15 +36,15 @@ export default {
   },
   setup () {
     const newList = ref([])
+    const target = ref(null)
     const getNewApi = async () => {
       const { result } = await getNew()
       newList.value = result
     }
-    onMounted(() => {
-      getNewApi()
-    })
+    useLazyData(target, getNewApi)
     return {
-      newList
+      newList,
+      target
     }
   }
 }
@@ -57,6 +58,7 @@ export default {
   .new-item {
     width: 305px;
     background: #f0f9f4;
+    transition: all 0.5s;
     .hoverShadow();
 
     &-img {

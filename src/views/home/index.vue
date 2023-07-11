@@ -17,7 +17,7 @@
     <HomeBrand></HomeBrand>
   </div>
   <div class="home-product">
-    <HomeProductJuJia></HomeProductJuJia>
+    <HomeProduct></HomeProduct>
   </div>
   <div class="home-special">
     <HomeSpecial></HomeSpecial>
@@ -31,12 +31,12 @@ import HomeNew from './components/HomeNew.vue'
 import HomeHot from './components/HomeHot.vue'
 import HomeBrand from './components/HomeBrand.vue'
 import HomeSpecial from '@/views/home/components/HomeSpecial.vue'
-import HomeProductJuJia from '@/views/home/components/HomeProductJuJia.vue'
+import HomeProduct from '@/views/home/components/HomeProduct.vue'
 
 export default {
   name: 'Home',
   components: {
-    HomeProductJuJia,
+    HomeProduct,
     HomeSpecial,
     HomeBrand,
     HomeHot,
