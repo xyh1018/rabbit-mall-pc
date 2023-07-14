@@ -7,7 +7,6 @@
  */
 
 import { useIntersectionObserver } from '@vueuse/core'
-// import { ref } from 'vue'
 
 export const useLazyData = (target, apiFn) => {
   const { stop } = useIntersectionObserver(

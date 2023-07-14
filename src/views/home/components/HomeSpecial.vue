@@ -1,5 +1,5 @@
 <template>
-  <div ref="target" class="container">
+  <div ref="target" class="container special">
     <HomePanel title="最新专题">
       <template #right>
         <XtxMore></XtxMore>

@@ -13,11 +13,11 @@
           </template>
         </HomePanel>
         <div class="product-content">
-          <img class="product-content-pic" :src="item.picture" alt="">
+          <img class="product-content-pic" v-lazy="item.picture" alt="" src="">
           <ul class="product-content-right">
             <li class="product-content-right-item" v-for="good in item.goods" :key="good.id">
               <div class="goods-item">
-                <img class="item-pic" :src="good.picture" alt="">
+                <img class="item-pic" v-lazy="good.picture" alt="" src="">
                 <span class="item-name">{{ good.name }}</span>
                 <span class="item-desc ellipsis">{{ good.desc }}</span>
                 <span class="item-price">{{ good.price }}</span>
