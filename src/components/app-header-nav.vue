@@ -87,6 +87,7 @@ export default {
         overflow: hidden;
         box-shadow: 0 0 5px #ccc;
         transition: all .2s ease .1s;
+        z-index: 99999;
 
         .popup {
           display: flex;

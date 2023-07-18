@@ -61,113 +61,117 @@ export default {
 </script>
 
 <style scoped lang="less">
-.sub {
-  font-size: 16px;
+.container {
+  padding-bottom: 40px;
 
-  a {
-    padding: 2px 12px;
+  .sub {
+    font-size: 16px;
 
-    &:last-child {
-      margin-right: 60px;
-    }
+    a {
+      padding: 2px 12px;
 
-    &:hover {
-      color: white;
-      background: #34b99b;
-      border-radius: 6px;
+      &:last-child {
+        margin-right: 60px;
+      }
+
+      &:hover {
+        color: white;
+        background: #34b99b;
+        border-radius: 6px;
+      }
     }
   }
-}
 
-.product-content {
-  display: flex;
-
-  .product-content-pic {
-    width: 240px;
-    height: 610px;
-    object-fit: cover;
-    margin-right: 20px;
-  }
-
-  .product-content-right {
-    width: 990px;
+  .product-content {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-content: space-between;
 
-    .product-content-right-item {
+    .product-content-pic {
+      width: 240px;
+      height: 610px;
+      object-fit: cover;
+      margin-right: 20px;
+    }
 
-      .goods-item {
-        width: 240px;
-        height: 300px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 10px 30px;
-        overflow: hidden;
-        border: 1px solid transparent;
-        transition: all .5s;
-        position: relative;
+    .product-content-right {
+      width: 990px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-content: space-between;
 
-        &:hover {
-          border-color: #34b99b;
+      .product-content-right-item {
 
-          .position {
-            transform: none;
-          }
-        }
-
-        .position {
-          height: 86px;
-          width: 100%;
-          background: #27ba9b;
-          position: absolute;
-          left: 0;
-          text-align: center;
-          bottom: 0;
+        .goods-item {
+          width: 240px;
+          height: 300px;
           display: flex;
           flex-direction: column;
           justify-content: center;
-          align-items: center;
-          color: white;
-          transform: translate3d(0, 110%, 0);
+          padding: 10px 30px;
+          overflow: hidden;
+          border: 1px solid transparent;
           transition: all .5s;
+          position: relative;
 
-          span {
-            line-height: 40px;
-            font-size: 14px;
+          &:hover {
+            border-color: #34b99b;
 
-            &:first-child {
-              font-size: 18px;
-              padding: 0 30px;
-              border-bottom: 1px solid white;
+            .position {
+              transform: none;
+            }
+          }
+
+          .position {
+            height: 86px;
+            width: 100%;
+            background: #27ba9b;
+            position: absolute;
+            left: 0;
+            text-align: center;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            transform: translate3d(0, 110%, 0);
+            transition: all .5s;
+
+            span {
+              line-height: 40px;
+              font-size: 14px;
+
+              &:first-child {
+                font-size: 18px;
+                padding: 0 30px;
+                border-bottom: 1px solid white;
+              }
             }
           }
         }
-      }
 
-      .item-pic {
-        width: 160px;
-        height: 160px;
-        margin: 0 auto;
-      }
+        .item-pic {
+          width: 160px;
+          height: 160px;
+          margin: 0 auto;
+        }
 
-      .item-name {
-        font-size: 16px;
-        padding-top: 7px;
-      }
+        .item-name {
+          font-size: 16px;
+          padding-top: 7px;
+        }
 
-      .item-desc {
-        font-size: 16px;
-        color: #666;
-        padding-top: 7px;
-      }
+        .item-desc {
+          font-size: 16px;
+          color: #666;
+          padding-top: 7px;
+        }
 
-      .item-price {
-        font-size: 20px;
-        color: #cf4444;
-        padding-top: 10px;
+        .item-price {
+          font-size: 20px;
+          color: #cf4444;
+          padding-top: 10px;
+        }
       }
     }
   }
