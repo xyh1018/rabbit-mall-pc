@@ -7,3 +7,16 @@ export function getHeadCategory () {
     methods: 'GET'
   })
 }
+
+/**
+ * 获取一级分类列表
+ * */
+export function getTopCategory (id) {
+  return request({
+    url: '/category',
+    methods: 'GET',
+    params: {
+      id: id
+    }
+  })
+}

@@ -19,7 +19,7 @@ export default createStore({
     createPersistedState({
       key: 'rabbit-pc-store',
       // 指定需要存储的模块
-      paths: ['user', 'cart']
+      paths: ['user', 'cart', 'category']
     })
   ]
 })

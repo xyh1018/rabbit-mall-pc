@@ -12,7 +12,6 @@ export default {
   },
   mutations: {
     setList (state, data) {
-      // state.list = null
       state.list = data
     }
   },

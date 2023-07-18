@@ -23,7 +23,7 @@ export default {
 .xtx-bread {
   display: flex;
   font-size: 14px;
-  color: #666666;
+  color: #333333;
   padding: 25px 10px;
 
   .bread-item {

@@ -4,7 +4,7 @@
   <AppHeaderFixed></AppHeaderFixed>
   <div class="app-body">
     <!--二级路由入口-->
-    <router-view></router-view>
+    <router-view :key="$route.params.id"></router-view>
   </div>
   <AppFooter></AppFooter>
 </template>

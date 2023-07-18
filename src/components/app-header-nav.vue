@@ -4,9 +4,10 @@
       <li class="sortMenu-item">
         <RouterLink to="/">首页</RouterLink>
       </li>
-      <li class="sortMenu-item" v-for="(item, index) in list" :key="index">
+      <li :class="{active: selectedIndex === index}" @click="select(index)" class="sortMenu-item"
+          v-for="(item, index) in list" :key="index">
         <RouterLink class="hover-link" :to="`/category/${item.id}`">{{ item.name }}</RouterLink>
-        <div class="popup-container popup-container-top">
+        <div v-show="show" class="popup-container popup-container-top">
           <ul class="popup">
             <li class="popup-item" v-for="children in item.children" :key="children.id">
               <RouterLink class="popup-item-link" :to="`/category/sub/${children.id}`"><img
@@ -23,18 +24,32 @@
 </template>
 
 <script>
-import { useStore } from 'vuex'
-import { computed } from 'vue'
+import index, { useStore } from 'vuex'
+import { computed, ref } from 'vue'
 
 export default {
   name: 'AppHeaderNav',
+  computed: {
+    index () {
+      return index
+    }
+  },
   setup () {
     const store = useStore()
     // 分类数据
     const list = computed(() => store.state.category.list)
+    const selectedIndex = ref(0)
+    const select = (index) => {
+      selectedIndex.value = index
+      show.value = false
+    }
+    const show = ref(true)
     return {
       list,
-      store
+      store,
+      selectedIndex,
+      select,
+      show
     }
   }
 }
@@ -57,13 +72,19 @@ export default {
     .sortMenu-item {
       margin-right: 40px;
 
-      a {
+      & > a {
         font-size: 16px;
         padding-bottom: 6px;
 
         &:hover {
           color: @MainGreenColor;
           border-bottom: 1px @MainGreenColor solid;
+        }
+      }
+
+      .popup-container-top {
+        a:hover {
+          color: @MainGreenColor;
         }
       }
 
@@ -123,6 +144,13 @@ export default {
 
   .hidden {
     display: none;
+  }
+
+  .active {
+    & > a {
+      color: @MainGreenColor;
+      border-bottom: 1px @MainGreenColor solid;
+    }
   }
 }
 </style>

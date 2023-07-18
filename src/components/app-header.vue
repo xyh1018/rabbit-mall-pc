@@ -25,9 +25,6 @@ export default {
   name: 'AppHeader',
   components: {
     AppHeaderNav
-  },
-  setup () {
-
   }
 }
 </script>

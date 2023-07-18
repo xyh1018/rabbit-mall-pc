@@ -4,15 +4,15 @@
     <ul class="carousel-body">
       <li v-for="(item, index) in bannerList" :key="index" class="carousel-item"
           :class="{fade: index === imgIndex}">
-        <RouterLink to="/">
+        <RouterLink to="">
           <img
             :src="item.imgUrl"
             alt="">
         </RouterLink>
       </li>
     </ul>
-    <a href="#" @click="toggle(-1)" class="carousel-btn prev"><i class="iconfont icon-left"></i></a>
-    <a href="#" @click="toggle(1)" class="carousel-btn next"><i class="iconfont icon-right"></i></a>
+    <a @click="toggle(-1)" class="carousel-btn prev"><i class="iconfont icon-left"></i></a>
+    <a @click="toggle(1)" class="carousel-btn next"><i class="iconfont icon-right"></i></a>
     <div class="carousel-indicator">
       <span @click="circle(index)" v-for="(i, index) in bannerList" :key="index"
             :class="{active: index === imgIndex}"></span>

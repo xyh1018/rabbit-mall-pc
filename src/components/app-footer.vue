@@ -97,6 +97,7 @@ export default {
   background: white;
   padding: 60px 10px 60px 10px;
   color: #989898;
+  margin-top: 20px;
 
   ul {
     display: flex;
