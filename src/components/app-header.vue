@@ -30,31 +30,37 @@ export default {
 </script>
 
 <style scoped lang="less">
+
 .appHeader-container {
   height: 132px;
   background: #ffffff;
 
   .layout {
     display: flex;
-    align-items: center;
+    z-index: 99999;
 
     .left {
+      width: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
       .logo {
         width: 200px;
-        padding-bottom: 15px;
       }
     }
 
     .right {
       display: flex;
       align-items: center;
+      height: 132px;
 
       .search {
         display: flex;
-
         align-items: center;
         width: 170px;
         border-bottom: 1px #cccccc solid;
+        margin-top: 10px;
 
         input {
           padding: 0 10px 5px;
@@ -63,7 +69,7 @@ export default {
       }
 
       .cart {
-        margin: 0 10px;
+        margin: 10px 10px 0;
       }
 
       .icon-gouwuche {

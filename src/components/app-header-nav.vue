@@ -4,15 +4,26 @@
       <li class="sortMenu-item">
         <RouterLink to="/">首页</RouterLink>
       </li>
-      <li :class="{active: selectedIndex === index}" @click="select(index)" class="sortMenu-item"
-          v-for="(item, index) in list" :key="index">
-        <RouterLink class="hover-link" :to="`/category/${item.id}`">{{ item.name }}</RouterLink>
-        <div v-show="show" class="popup-container popup-container-top">
+      <li class="sortMenu-item"
+          v-for="(item, index) in list" :key="item.id"
+          :class="{active: selectedIndex === index}"
+          @click="select(index)"
+          @mouseenter="show(item)"
+          @mouseleave="hide(item)"
+      >
+        <RouterLink @click="hide(item)"
+                    :to="`/category/${item.id}`"
+        >
+          {{ item.name }}
+        </RouterLink>
+        <div class="popup-container popup-container-top" :class="{showPop: item.show}">
           <ul class="popup">
-            <li class="popup-item" v-for="children in item.children" :key="children.id">
-              <RouterLink class="popup-item-link" :to="`/category/sub/${children.id}`"><img
-                :src="children.picture"
-                alt="">
+            <li class="popup-item"
+                @click="hide(item)"
+                v-for="children in item.children" :key="children.id"
+            >
+              <RouterLink class="popup-item-link" :to="`/category/sub/${children.id}`">
+                <img :src="children.picture" alt="">
                 <div class="name">{{ children.name }}</div>
               </RouterLink>
             </li>
@@ -24,32 +35,34 @@
 </template>
 
 <script>
-import index, { useStore } from 'vuex'
+import { useStore } from 'vuex'
 import { computed, ref } from 'vue'
 
 export default {
   name: 'AppHeaderNav',
-  computed: {
-    index () {
-      return index
-    }
-  },
   setup () {
     const store = useStore()
     // 分类数据
     const list = computed(() => store.state.category.list)
-    const selectedIndex = ref(0)
+    const selectedIndex = ref(null)
     const select = (index) => {
       selectedIndex.value = index
-      show.value = false
     }
-    const show = ref(true)
+    const show = (item) => {
+      store.commit('category/show', item.id)
+      console.log('show')
+    }
+    const hide = (item) => {
+      store.commit('category/hide', item.id)
+      console.log('hide')
+    }
     return {
       list,
       store,
       selectedIndex,
       select,
-      show
+      show,
+      hide
     }
   }
 }
@@ -71,6 +84,7 @@ export default {
 
     .sortMenu-item {
       margin-right: 40px;
+      margin-top: 10px;
 
       & > a {
         font-size: 16px;
@@ -88,14 +102,6 @@ export default {
         }
       }
 
-      &:hover {
-        .popup-container {
-          height: 120px;
-          opacity: 1;
-        }
-
-      }
-
       .popup-container {
         background: white;
         position: absolute;
@@ -109,6 +115,11 @@ export default {
         box-shadow: 0 0 5px #ccc;
         transition: all .2s ease .1s;
         z-index: 99999;
+
+        &.showPop {
+          height: 120px;
+          opacity: 1;
+        }
 
         .popup {
           display: flex;
@@ -140,10 +151,6 @@ export default {
     li:first-child {
       padding-left: 40px;
     }
-  }
-
-  .hidden {
-    display: none;
   }
 
   .active {

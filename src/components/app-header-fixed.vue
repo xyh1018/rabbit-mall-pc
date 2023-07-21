@@ -74,7 +74,6 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-bottom: 8px;
 
       .logo {
         width: 160px;
@@ -92,6 +91,7 @@ export default {
         align-items: center;
         border-left: 2px #34b99b solid;
         width: 214px;
+        margin-top: 10px;
 
         a:hover {
           color: #34b99b;

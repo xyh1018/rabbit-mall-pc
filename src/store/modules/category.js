@@ -13,11 +13,23 @@ export default {
   mutations: {
     setList (state, data) {
       state.list = data
+    },
+    show (state, id) {
+      const currCategory = state.list.find(item => item.id === id)
+      currCategory.show = true
+    },
+    hide (state, id) {
+      const currCategory = state.list.find(item => item.id === id)
+      currCategory.show = false
     }
   },
   actions: {
     async getList (context) {
       const { result } = await getHeadCategory()
+      // show控制二级分类列表的显示状态
+      result.forEach(item => {
+        item.show = false
+      })
       context.commit('setList', result)
     }
   }

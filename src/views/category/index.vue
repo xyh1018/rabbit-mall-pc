@@ -1,15 +1,18 @@
 <template>
   <div class="top-category">
     <div class="container">
+      <!--面包屑-->
       <XtxBread>
         <XtxBreadItem path="/" name="首页"></XtxBreadItem>
         <transition name="fade-right">
           <XtxBreadItem :key="list.id" :name="list.name"></XtxBreadItem>
         </transition>
       </XtxBread>
+      <!--轮播图-->
       <div class="banner">
         <XtxCarousel :bannerList="bannerList" auto></XtxCarousel>
       </div>
+      <!--全部分类-->
       <div class="sub-list">
         <h3>全部分类</h3>
         <ul class="list">
@@ -22,6 +25,7 @@
           </li>
         </ul>
       </div>
+      <!--分类产品-->
       <div v-for="obj in topCateList" :key="obj.id">
         <CategoryGoods :title="obj.name" :goods="obj.goods"></CategoryGoods>
       </div>
@@ -30,7 +34,7 @@
 </template>
 
 <script>
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { getBanner } from '@/api/home'
 import CategoryGoods from './components/CategoryGoods.vue'
 import { useStore } from 'vuex'
@@ -63,9 +67,6 @@ export default {
     watch(() => id, (newValue) => {
       getTopCateApi()
     }, { immediate: true })
-    onMounted(() => {
-      // getTopCateApi()
-    })
     return {
       bannerList,
       list,
