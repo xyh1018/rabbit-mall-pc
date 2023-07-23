@@ -30,7 +30,6 @@ export default {
 </script>
 
 <style scoped lang="less">
-
 .appHeader-container {
   height: 132px;
   background: #ffffff;

@@ -3,10 +3,10 @@
     <div class="container">
       <!--面包屑-->
       <XtxBread>
-        <XtxBreadItem path="/" name="首页"></XtxBreadItem>
-        <transition name="fade-right">
-          <XtxBreadItem :key="list.id" :name="list.name"></XtxBreadItem>
-        </transition>
+        <XtxBreadItem path="/">{{ '首页' }}</XtxBreadItem>
+        <Transition name="fade" appear mode="out-in">
+          <XtxBreadItem>{{ list.name }}</XtxBreadItem>
+        </Transition>
       </XtxBread>
       <!--轮播图-->
       <div class="banner">
@@ -42,7 +42,9 @@ import { useRoute } from 'vue-router'
 import { getTopCategory } from '@/api/category'
 
 export default {
-  components: { CategoryGoods },
+  components: {
+    CategoryGoods
+  },
   setup () {
     const store = useStore()
     const route = useRoute()
@@ -77,19 +79,19 @@ export default {
 </script>
 
 <style scoped lang="less">
-.fade-right-enter-from,
-.fade-right-leave-to {
+.fade-enter-from,
+.fade-leave-to {
   transform: translateX(20px);
   opacity: 0;
 }
 
-.fade-right-enter-active,
+.fade-enter-active,
 .fade-right-leave-active {
-  transition: all 1s;
+  transition: all 1.2s;
 }
 
-.fade-right-enter-to,
-.fade-right-leave-from {
+.fade-enter-to,
+.fade-leave-from {
   transform: none;
   opacity: 1;
 }

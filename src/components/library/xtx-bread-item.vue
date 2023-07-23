@@ -1,7 +1,9 @@
 <template>
   <div class="bread-item">
-    <RouterLink v-if="path" :to="path">{{ name }}</RouterLink>
-    <span v-else>{{ name }}</span>
+    <RouterLink v-if="path" :to="path">
+      <slot></slot>
+    </RouterLink>
+    <span v-else><slot></slot></span>
   </div>
 </template>
 
@@ -10,9 +12,6 @@ export default {
   props: {
     path: {
       type: [String, Object]
-    },
-    name: {
-      type: String
     }
   }
 }

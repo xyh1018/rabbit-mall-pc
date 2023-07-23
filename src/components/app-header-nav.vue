@@ -7,11 +7,11 @@
       <li class="sortMenu-item"
           v-for="(item, index) in list" :key="item.id"
           :class="{active: selectedIndex === index}"
-          @click="select(index)"
+          @click="hide(item)"
           @mouseenter="show(item)"
           @mouseleave="hide(item)"
       >
-        <RouterLink @click="hide(item)"
+        <RouterLink @click="select(index)"
                     :to="`/category/${item.id}`"
         >
           {{ item.name }}
@@ -50,15 +50,12 @@ export default {
     }
     const show = (item) => {
       store.commit('category/show', item.id)
-      console.log('show')
     }
     const hide = (item) => {
       store.commit('category/hide', item.id)
-      console.log('hide')
     }
     return {
       list,
-      store,
       selectedIndex,
       select,
       show,
