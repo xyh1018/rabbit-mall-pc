@@ -8,7 +8,7 @@
           v-for="(item, index) in list" :key="item.id"
           :class="{active: selectedIndex === index}"
           @click="hide(item)"
-          @mouseenter="show(item)"
+          @mousemove="show(item)"
           @mouseleave="hide(item)"
       >
         <RouterLink @click="select(index)"

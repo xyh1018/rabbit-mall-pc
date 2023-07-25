@@ -31,6 +31,7 @@ export default {
         item.show = false
       })
       context.commit('setList', result)
+      console.log('vuex-category-list', result)
     }
   }
 }
