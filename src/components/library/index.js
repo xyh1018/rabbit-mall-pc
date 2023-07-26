@@ -3,6 +3,8 @@ import XtxCarousel from './xtx-carousel.vue'
 import XtxMore from './xtx-more.vue'
 import XtxBread from '@/components/library/xtx-bread.vue'
 import XtxBreadItem from '@/components/library/xtx-bread-item.vue'
+import XtxCheckbox from '@/components/library/xtx-checkbox.vue'
+import XtxInfiniteLoading from '@/components/library/xtx-infinite-loading.vue'
 import defaultImg from '@/assets/images/200.png'
 
 export default {
@@ -12,6 +14,8 @@ export default {
     Vue.component('XtxMore', XtxMore)
     Vue.component('XtxBread', XtxBread)
     Vue.component('XtxBreadItem', XtxBreadItem)
+    Vue.component('XtxCheckbox', XtxCheckbox)
+    Vue.component('XtxInfiniteLoading', XtxInfiniteLoading)
     Vue.directive('lazy', lazy)
   }
 }

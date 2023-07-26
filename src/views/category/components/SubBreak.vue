@@ -2,7 +2,9 @@
   <XtxBread>
     <XtxBreadItem path="/">{{ '首页' }}</XtxBreadItem>
     <XtxBreadItem :path="`/category/${category.top.id}`">{{ category.top.name }}</XtxBreadItem>
-    <XtxBreadItem>{{ category.sub.name }}</XtxBreadItem>
+    <Transition name="fade-right" appear>
+      <XtxBreadItem>{{ category.sub.name }}</XtxBreadItem>
+    </Transition>
   </XtxBread>
 </template>
 

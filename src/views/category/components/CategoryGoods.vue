@@ -10,12 +10,7 @@
     <div class="body">
       <ul class="body-list">
         <li class="item" v-for="item in goods" :key="item.id">
-          <RouterLink to="">
-            <img :src="item.picture" alt="">
-            <p class="name ellipsis">{{ item.name }}</p>
-            <p class="desc ellipsis">{{ item.desc }}</p>
-            <p class="price">{{ item.price }}</p>
-          </RouterLink>
+          <GoodsItem :item="item"></GoodsItem>
         </li>
       </ul>
     </div>
@@ -23,8 +18,11 @@
 </template>
 
 <script>
+import GoodsItem from '@/views/category/components/GoodsItem.vue'
+
 export default {
   name: 'CategoryGoods',
+  components: { GoodsItem },
   props: {
     goods: {
       required: true,
@@ -81,34 +79,7 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 20px 30px;
 
-        img {
-          width: 160px;
-          height: 160px;
-        }
-
-        .name {
-          font-size: 16px;
-          width: 160px;
-          padding-top: 10px;
-          text-align: center;
-        }
-
-        .desc {
-          font-size: 14px;
-          color: #999999;
-          width: 160px;
-          padding-top: 10px;
-          text-align: center;
-        }
-
-        .price {
-          font-size: 20px;
-          color: #cf4444;
-          padding-top: 10px;
-          text-align: center;
-        }
       }
     }
   }

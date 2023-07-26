@@ -4,7 +4,7 @@
       <!--面包屑-->
       <XtxBread>
         <XtxBreadItem path="/">{{ '首页' }}</XtxBreadItem>
-        <Transition name="fade" appear mode="out-in">
+        <Transition name="fade-right" appear mode="out-in">
           <XtxBreadItem>{{ list.name }}</XtxBreadItem>
         </Transition>
       </XtxBread>
@@ -79,23 +79,6 @@ export default {
 </script>
 
 <style scoped lang="less">
-.fade-enter-from,
-.fade-leave-to {
-  transform: translateX(20px);
-  opacity: 0;
-}
-
-.fade-enter-active,
-.fade-right-leave-active {
-  transition: all 1.2s;
-}
-
-.fade-enter-to,
-.fade-leave-from {
-  transform: none;
-  opacity: 1;
-}
-
 .top-category {
   .container {
     .banner {
