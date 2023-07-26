@@ -1,10 +1,10 @@
 <template>
-  <div class="xtx-infinite-loading">
-    <div class="loading">
+  <div class="xtx-infinite-loading" ref="target">
+    <div v-if="loading" class="loading">
       <span class="img"></span>
       <span class="text">正在加载...</span>
     </div>
-    <div class="none">
+    <div v-if="finished" class="none">
       <span class="img"></span>
       <span class="text">亲，没有更多了</span>
     </div>
@@ -12,10 +12,37 @@
 </template>
 
 <script>
+import { ref } from 'vue'
+import { useIntersectionObserver } from '@vueuse/core'
+
 export default {
   name: 'XtxInfiniteLoading',
-  setup () {
-
+  props: {
+    loading: {
+      type: Boolean,
+      default: false
+    },
+    finished: {
+      type: Boolean,
+      default: false
+    }
+  },
+  setup (props, { emit }) {
+    const target = ref(null)
+    useIntersectionObserver(target, ([{ isIntersecting }]) => {
+      if (isIntersecting) {
+        // 如果不处于加载状态且没有加载完所有数据,则触发infinite事件,来获取数据
+        if (!props.loading && !props.finished) {
+          console.log('进入可视区')
+          emit('infinite')
+        }
+      }
+    }, {
+      threshold: 0
+    })
+    return {
+      target
+    }
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <RouterLink class="goods-item" to="">
-    <img :src="item.picture" alt="">
+    <img v-lazy="item.picture" src="" alt="">
     <p class="name ellipsis">{{ item.name }}</p>
     <p class="desc ellipsis">{{ item.desc }}</p>
     <p class="price">{{ item.price }}</p>

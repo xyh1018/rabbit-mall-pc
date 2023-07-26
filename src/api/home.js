@@ -4,7 +4,7 @@ import request from '@/utils/request'
 export function getBrand (params) {
   return request({
     url: '/home/brand',
-    methods: 'GET',
+    method: 'GET',
     params
   })
 }
@@ -13,7 +13,7 @@ export function getBrand (params) {
 export function getBanner () {
   return request({
     url: '/home/banner',
-    methods: 'GET'
+    method: 'GET'
   })
 }
 
@@ -23,7 +23,7 @@ export function getBanner () {
 export function getNew () {
   return request({
     url: '/home/new',
-    methods: 'GET'
+    method: 'GET'
   })
 }
 
@@ -33,7 +33,7 @@ export function getNew () {
 export function getHot () {
   return request({
     url: '/home/hot',
-    methods: 'GET'
+    method: 'GET'
   })
 }
 
@@ -43,7 +43,7 @@ export function getHot () {
 export function getSpecial (params) {
   return request({
     url: '/home/special',
-    methods: 'GET',
+    method: 'GET',
     params: {
       limit: 3
     }
@@ -56,6 +56,6 @@ export function getSpecial (params) {
 export function getProduct () {
   return request({
     url: '/home/goods',
-    methods: 'GET'
+    method: 'GET'
   })
 }

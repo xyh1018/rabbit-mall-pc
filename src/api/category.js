@@ -6,7 +6,7 @@ import request from '@/utils/request'
 export function getHeadCategory () {
   return request({
     url: '/home/category/head',
-    methods: 'GET'
+    method: 'GET'
   })
 }
 
@@ -16,7 +16,7 @@ export function getHeadCategory () {
 export function getTopCategory (id) {
   return request({
     url: '/category',
-    methods: 'GET',
+    method: 'GET',
     params: {
       id: id
     }
@@ -30,9 +30,21 @@ export function getTopCategory (id) {
 export function getSubFilter (id) {
   return request({
     url: '/category/sub/filter',
-    methods: 'GET',
+    method: 'GET',
     params: {
       id: id
     }
+  })
+}
+
+/**
+ * 二级类目商品数据
+ * @param {Object} data
+ * */
+export function getSubGoods (data) {
+  return request({
+    url: '/category/goods/temporary',
+    method: 'POST',
+    data
   })
 }
