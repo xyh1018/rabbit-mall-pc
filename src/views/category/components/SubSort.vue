@@ -13,8 +13,11 @@
       </a>
     </div>
     <div class="check">
-      <XtxCheckbox v-model="sortParams.inventory">仅显示有货商品</XtxCheckbox>
-      <XtxCheckbox v-model="sortParams.onlyDiscount">仅显示特惠商品</XtxCheckbox>
+      <XtxCheckbox @click="changeSelect" v-model="sortParams.inventory">仅显示有货商品
+      </XtxCheckbox>
+      <XtxCheckbox @click="changeSelect" v-model="sortParams.onlyDiscount">
+        仅显示特惠商品
+      </XtxCheckbox>
     </div>
   </div>
 </template>
@@ -23,7 +26,7 @@
 import { reactive } from 'vue'
 
 export default {
-  setup () {
+  setup (props, { emit }) {
     const sortParams = reactive({
       inventory: false, // 是否有库存
       onlyDiscount: false, // 只显示特惠
@@ -48,11 +51,16 @@ export default {
         sortParams.sortField = sortField
         sortParams.sortMethod = ''
       }
+      // 调用自定义事件,来获取排序数据
+      emit('getSort', sortParams)
     }
-    console.log('sortParams', sortParams)
+    const changeSelect = (value) => {
+      emit('getSort', sortParams)
+    }
     return {
       sortParams,
-      changeSort
+      changeSort,
+      changeSelect
     }
   }
 }

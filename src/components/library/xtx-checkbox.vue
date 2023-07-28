@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { useVModel } from '@vueuse/core'
+// import { useVModel } from '@vueuse/core'
 
 export default {
   name: 'XtxCheckbox',
@@ -18,12 +18,13 @@ export default {
     }
   },
   setup (props, { emit }) {
-    const checked = useVModel(props, 'modelValue', emit)
+    // const checked = useVModel(props, 'modelValue', emit)
     const changeChecked = () => {
-      checked.value = !checked.value
+      // checked.value = !checked.value
+      emit('update:modelValue', !props.modelValue)
     }
     return {
-      checked,
+      // checked,
       changeChecked
     }
   }

@@ -1,15 +1,19 @@
 <template>
   <div class="sub-category">
     <div class="container">
+      <!--面包屑-->
       <SubBreak></SubBreak>
-      <SubFilter></SubFilter>
+      <!--条件过滤组件-->
+      <SubFilter @getFilter="getFilterData"></SubFilter>
       <div class="goods-list">
-        <SubSort></SubSort>
+        <!--排序组件-->
+        <SubSort @getSort="getSortData"></SubSort>
         <ul class="list">
           <li class="item" v-for="goods in goodsList" :key="goods.id">
             <GoodsItem :item="goods"></GoodsItem>
           </li>
         </ul>
+        <!--无限加载组件-->
         <XtxInfiniteLoading :loading="loading" :finished="finished" @infinite="getData"></XtxInfiniteLoading>
       </div>
     </div>
@@ -35,14 +39,17 @@ export default {
   setup () {
     const route = useRoute()
     const isAllChecked = ref(false)
+    // 加载状态 true:正在加载 false:加载完成
     const loading = ref(false)
+    // 数据是否加载完
     const finished = ref(false)
     // 商品列表
     const goodsList = ref([])
     // 请求数据
-    const reqData = {
+    let reqData = {
       page: 1,
-      pageSize: 20
+      pageSize: 20,
+      attrs: []
     }
     const getData = () => {
       loading.value = true
@@ -59,12 +66,44 @@ export default {
         loading.value = false
       })
     }
+    const getSortData = (sortParams) => {
+      finished.value = true
+      reqData = {
+        page: 1,
+        pageSize: 20,
+        attrs: reqData.attrs
+      }
+      reqData.categoryId = route.params.id
+      reqData = { ...sortParams, ...reqData }
+      goodsList.value = []
+      getSubGoods(reqData).then(({ result }) => {
+        goodsList.value = result.items
+        reqData.page++
+        finished.value = false
+      })
+    }
+    const getFilterData = (attrs) => {
+      finished.value = true
+      reqData.categoryId = route.params.id
+      reqData = {
+        ...reqData,
+        attrs
+      }
+      goodsList.value = []
+      getSubGoods(reqData).then(({ result }) => {
+        goodsList.value = result.items
+        reqData.page++
+        finished.value = false
+      })
+    }
     return {
       isAllChecked,
       loading,
       finished,
       goodsList,
-      getData
+      getData,
+      getSortData,
+      getFilterData
     }
   }
 }

@@ -30,10 +30,10 @@ export default {
   setup (props, { emit }) {
     const target = ref(null)
     useIntersectionObserver(target, ([{ isIntersecting }]) => {
+      // .xtx-infinite-loading进入可视区域进行数据加载判断
       if (isIntersecting) {
         // 如果不处于加载状态且没有加载完所有数据,则触发infinite事件,来获取数据
         if (!props.loading && !props.finished) {
-          console.log('进入可视区')
           emit('infinite')
         }
       }
