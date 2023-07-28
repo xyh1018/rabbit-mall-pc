@@ -13,21 +13,25 @@
           </template>
         </HomePanel>
         <div class="product-content">
-          <img class="product-content-pic" v-lazy="item.picture" alt="" src="">
+          <RouterLink :to="`/category/${item.id}`">
+            <img class="product-content-pic" v-lazy="item.picture" alt="" src="">
+          </RouterLink>
           <ul class="product-content-right">
             <li class="product-content-right-item" v-for="good in item.goods" :key="good.id">
-              <div class="goods-item">
-                <img class="item-pic" v-lazy="good.picture" alt="" src="">
-                <span class="item-name">{{ good.name }}</span>
-                <span class="item-desc ellipsis">{{ good.desc }}</span>
-                <span class="item-price">{{ good.price }}</span>
-                <div>
-                  <RouterLink to="/" class="position">
-                    <span>找相似</span>
-                    <span>发现更多宝贝</span>
-                  </RouterLink>
+              <RouterLink :to="`/goods/${good.id}`">
+                <div class="goods-item">
+                  <img class="item-pic" v-lazy="good.picture" alt="" src="">
+                  <span class="item-name">{{ good.name }}</span>
+                  <span class="item-desc ellipsis">{{ good.desc }}</span>
+                  <span class="item-price">{{ good.price }}</span>
+                  <div>
+                    <RouterLink to="/" class="position">
+                      <span>找相似</span>
+                      <span>发现更多宝贝</span>
+                    </RouterLink>
+                  </div>
                 </div>
-              </div>
+              </RouterLink>
             </li>
           </ul>
         </div>

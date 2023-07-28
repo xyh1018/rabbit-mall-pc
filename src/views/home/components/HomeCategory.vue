@@ -21,13 +21,15 @@
       </div>
       <div class="popup-item-main">
         <ul class="main-content">
-          <li class="main-content-item" v-for="item in currentCategory.goods" :key="item.id">
-            <img :src="item.picture" alt="">
-            <div class="main-content-item-text">
-              <p class="text-name">{{ item.name }}</p>
-              <p class="text-desc">{{ item.desc }}</p>
-              <p class="text-price">{{ item.price }}</p>
-            </div>
+          <li v-for="item in currentCategory.goods" :key="item.id">
+            <RouterLink class="main-content-item" :to="`/goods/${item.id}`">
+              <img :src="item.picture" alt="">
+              <div class="main-content-item-text">
+                <p class="text-name">{{ item.name }}</p>
+                <p class="text-desc">{{ item.desc }}</p>
+                <p class="text-price">{{ item.price }}</p>
+              </div>
+            </RouterLink>
           </li>
         </ul>
       </div>

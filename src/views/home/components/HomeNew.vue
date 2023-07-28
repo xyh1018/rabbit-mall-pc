@@ -8,7 +8,7 @@
     <transition name="fade">
       <ul v-if="newList.length" class="new-list">
         <li class="new-item" v-for="item in newList" :key="item.id">
-          <RouterLink to="/">
+          <RouterLink :to="`/goods/${item.id}`">
             <img class="new-item-img" :src="item.picture" alt="">
             <span class="new-item-name ellipsis">{{ item.name }}</span>
             <span class="new-item-price">{{ item.price }}</span>
