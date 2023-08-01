@@ -67,7 +67,7 @@ export default {
       })
     }
     const getSortData = (sortParams) => {
-      finished.value = true
+      // loading.value = true
       reqData = {
         page: 1,
         pageSize: 20,
@@ -79,11 +79,11 @@ export default {
       getSubGoods(reqData).then(({ result }) => {
         goodsList.value = result.items
         reqData.page++
-        finished.value = false
+        // loading.value = false
       })
     }
     const getFilterData = (attrs) => {
-      finished.value = true
+      // loading.value = true
       reqData.categoryId = route.params.id
       reqData = {
         ...reqData,
@@ -93,7 +93,7 @@ export default {
       getSubGoods(reqData).then(({ result }) => {
         goodsList.value = result.items
         reqData.page++
-        finished.value = false
+        // loading.value = false
       })
     }
     return {
