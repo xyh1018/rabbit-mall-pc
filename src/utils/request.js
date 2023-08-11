@@ -10,7 +10,9 @@ const request = axios.create({
 request.interceptors.request.use(
   (config) => {
     // 设置请求头认证信息
-    config.headers.Authorization = `Bearer ${store.state.user.profile.token}`
+    if (store.state.user.profile.token) {
+      config.headers.Authorization = `Bearer ${store.state.user.profile.token}`
+    }
     return config
   }, (error) => {
     return Promise.reject(error)
