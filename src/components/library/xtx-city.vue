@@ -35,8 +35,10 @@ export default {
     const target = ref(null)
     // 城市列表
     const cityList = ref([])
+    // 加载状态 true正在加载 false加载完成
     const loading = ref(false)
-    const changeResult = reactive({
+    // 地址
+    const address = reactive({
       provinceCode: '',
       provinceName: '',
       cityCode: '',
@@ -47,8 +49,10 @@ export default {
     })
     // onClickOutside监听一个容器外的点击事件
     onClickOutside(target, (e) => {
+      // 点击了选项栏外的区域,则关闭选项栏
       close()
     })
+    // @getCityList 获取区域列表数据函数
     const getCityList = () => {
       return new Promise((resolve, reject) => {
         const city = JSON.parse(window.localStorage.getItem('CityList'))
@@ -69,49 +73,55 @@ export default {
     const currList = computed(() => {
       // 默认是省一级列表
       let list = cityList.value
-      if (changeResult.provinceCode && changeResult.provinceName) {
+      if (address.provinceCode && address.provinceName) {
         const province = cityList.value.find(c => {
-          return c.code === changeResult.provinceCode
+          return c.code === address.provinceCode
         })
         list = province.areaList
       }
-      if (changeResult.cityCode && changeResult.cityName) {
+      if (address.cityCode && address.cityName) {
         const city = list.find(c => {
-          return c.code === changeResult.cityCode
+          return c.code === address.cityCode
         })
         list = city.areaList
       }
-      if (changeResult.countCode && changeResult.countName) {
+      if (address.countCode && address.countName) {
         const zone = list.find(c => {
-          return c.code === changeResult.countCode
+          return c.code === address.countCode
         })
         list = zone.areaList
       }
       return list
     })
+    // @changeList 点击城市后触发
     const changeList = (item) => {
+      // 判断点击的城市属于哪个层级 0省级 1市级 2区县级
       if (item.level === 0) {
-        changeResult.provinceCode = item.code
-        changeResult.provinceName = item.name
+        address.provinceCode = item.code
+        address.provinceName = item.name
       }
       if (item.level === 1) {
-        changeResult.cityCode = item.code
-        changeResult.cityName = item.name
+        address.cityCode = item.code
+        address.cityName = item.name
       }
       if (item.level === 2) {
-        changeResult.countCode = item.code
-        changeResult.countName = item.name
-        changeResult.fullLocation = `${changeResult.provinceName} ${changeResult.cityName} ${changeResult.countName}`
+        address.countCode = item.code
+        address.countName = item.name
+        // 拼接地址
+        address.fullLocation = `${address.provinceName} ${address.cityName} ${address.countName}`
+        // 点击区县级时关闭选项
         close()
-        emit('selectCity', changeResult)
+        // 触发事件并传递数据
+        emit('selectCity', address)
       }
     }
     const close = () => {
       show.value = false
     }
     const open = () => {
-      for (const key in changeResult) {
-        changeResult[key] = ''
+      // 重置地址数据
+      for (const key in address) {
+        address[key] = ''
       }
       show.value = true
       loading.value = true
@@ -128,12 +138,11 @@ export default {
       show,
       toggle,
       target,
-      getCityList,
       cityList,
       loading,
       currList,
       changeList,
-      changeResult
+      address
     }
   }
 }

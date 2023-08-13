@@ -49,6 +49,7 @@ export default {
     const cityCode = ref('119900')
     // 所在区/县编码
     const countyCode = ref('110101')
+    // 完整地址
     const fullLocation = ref('北京市 市辖区 东城区')
     // 有默认地址
     if (props.goods.userAddresses) {
