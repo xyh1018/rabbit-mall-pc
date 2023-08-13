@@ -17,7 +17,7 @@
         <h3>全部分类</h3>
         <ul class="list">
           <li v-for="item in list.children" :key="item.id" class="list-item">
-            <RouterLink to="#">
+            <RouterLink :to="`/category/sub/${item.id}`">
               <img class="item-img" :src="item.picture"
                    alt="">
               <p class="item-name">{{ item.name }}</p>

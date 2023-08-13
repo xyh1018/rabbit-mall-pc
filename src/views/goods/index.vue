@@ -18,46 +18,38 @@
           <GoodsImage v-if="goods" :images="goods.mainPictures"></GoodsImage>
           <GoodsSales></GoodsSales>
         </div>
-        <div v-if="goods" class="spec">
-          <div class="g-name">{{ goods.name }}</div>
-          <div class="g-desc">{{ goods.desc }}</div>
-          <div class="g-price">
-            <span>{{ goods.price }}</span>
-            <span>{{ goods.oldPrice }}</span>
-          </div>
-          <div class="g-service">
-
-          </div>
-          <div class="goods-sku"></div>
-        </div>
-      </div>
-      <!-- 商品推荐 -->
-      <GoodsRelevant/>
-      <!-- 商品详情 -->
-      <div class="goods-footer">
-        <div class="goods-article">
-          <!-- 商品+评价 -->
-          <div class="goods-tabs"></div>
-          <!-- 注意事项 -->
-          <div class="goods-warn"></div>
-        </div>
-        <!-- 24热榜+专题推荐 -->
-        <div class="goods-aside"></div>
+        <GoodsName v-if="goods" :goods="goods"></GoodsName>
       </div>
     </div>
+    <!-- 商品推荐 -->
+    <GoodsRelevant/>
+    <!-- 商品详情 -->
+    <div class="goods-footer">
+      <div class="goods-article">
+        <!-- 商品+评价 -->
+        <div class="goods-tabs"></div>
+        <!-- 注意事项 -->
+        <div class="goods-warn"></div>
+      </div>
+      <!-- 24热榜+专题推荐 -->
+      <div class="goods-aside"></div>
+    </div>
   </div>
+
 </template>
 
 <script>
 import GoodsRelevant from './components/GoodsRelevant.vue'
 import { getGoodsDetails } from '@/api/goods'
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import GoodsImage from '@/views/goods/components/GoodsImage.vue'
 import GoodsSales from '@/views/goods/components/GoodsSales.vue'
+import GoodsName from '@/views/goods/components/GoodsName.vue'
 
 export default {
   components: {
+    GoodsName,
     GoodsSales,
     GoodsImage,
     GoodsRelevant
@@ -66,16 +58,13 @@ export default {
     // goods 商品详情页的数据
     const goods = ref(null)
     const route = useRoute()
-    const getGoods = async () => {
-      const data = await getGoodsDetails(route.params.id)
-      // goods.value = null
-      // await nextTick(() => {
-      //   goods.value = data.result
-      // })
+    // const getGoods = async () => {
+    //   const data = await getGoodsDetails(route.params.id)
+    //   goods.value = data.result
+    // }
+    // getGoods()
+    getGoodsDetails(route.params.id).then(data => {
       goods.value = data.result
-    }
-    onMounted(() => {
-      getGoods()
     })
     return {
       goods
@@ -96,47 +85,6 @@ export default {
     padding: 30px 50px;
   }
 
-  .spec {
-    flex: 1;
-    padding: 30px 30px 30px 0;
-
-    .g-name {
-      font-size: 22px;
-    }
-
-    .g-desc {
-      color: #999;
-      margin-top: 10px;
-    }
-
-    .g-price {
-      margin-top: 10px;
-
-      span:first-child {
-        color: #cf4444;
-        margin-right: 10px;
-        font-size: 22px;
-      }
-
-      span:last-child {
-        color: #999;
-        text-decoration: line-through;
-        font-size: 16px;
-      }
-    }
-
-    .g-service {
-      background: #f5f5f5;
-      width: 500px;
-      padding: 20px 10px 0 10px;
-      margin-top: 10px;
-    }
-
-    .goods-sku {
-      padding-left: 10px;
-      padding-top: 20px;
-    }
-  }
 }
 
 .goods-footer {

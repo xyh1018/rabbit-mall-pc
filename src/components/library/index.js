@@ -5,6 +5,7 @@ import XtxBread from '@/components/library/xtx-bread.vue'
 import XtxBreadItem from '@/components/library/xtx-bread-item.vue'
 import XtxCheckbox from '@/components/library/xtx-checkbox.vue'
 import XtxInfiniteLoading from '@/components/library/xtx-infinite-loading.vue'
+import XtxCity from '@/components/library/xtx-city.vue'
 import defaultImg from '@/assets/images/200.png'
 
 export default {
@@ -16,6 +17,7 @@ export default {
     Vue.component('XtxBreadItem', XtxBreadItem)
     Vue.component('XtxCheckbox', XtxCheckbox)
     Vue.component('XtxInfiniteLoading', XtxInfiniteLoading)
+    Vue.component('XtxCity', XtxCity)
     Vue.directive('lazy', lazy)
   }
 }
