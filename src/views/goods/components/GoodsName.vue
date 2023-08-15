@@ -27,14 +27,16 @@
         </dd>
       </dl>
     </div>
-    <div class="goods-sku"></div>
+    <GoodsSku :goods="goods"></GoodsSku>
   </div>
 </template>
 
 <script>
 import { ref } from 'vue'
+import GoodsSku from '@/views/goods/components/GoodsSku.vue'
 
 export default {
+  components: { GoodsSku },
   props: {
     goods: {
       type: Object,
