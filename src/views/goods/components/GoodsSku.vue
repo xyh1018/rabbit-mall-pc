@@ -60,6 +60,7 @@ export default {
           console.log(pathMap)
         }
       })
+      //
       return pathMap
     }
     getPathMap()
