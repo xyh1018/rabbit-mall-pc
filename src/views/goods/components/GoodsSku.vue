@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import bwPowerSet from '@/utils/power-set'
+
 export default {
   props: {
     goods: {
@@ -21,7 +23,7 @@ export default {
       default: () => ({})
     }
   },
-  setup () {
+  setup (props) {
     const select = (item, val) => {
       if (val.selected) {
         val.selected = !val.selected
@@ -32,6 +34,35 @@ export default {
         val.selected = true
       }
     }
+    const getPathMap = () => {
+      const skus = props.goods.skus
+      const pathMap = {}
+      // 得到有效sku
+      skus.forEach(sku => {
+        // 如果库存大于零
+        if (sku.inventory > 0) {
+          // 可选值数组 ['红色', '18cm']
+          const valueNames = sku.specs.map(obj => {
+            return obj.valueName
+          })
+          // 可选值数组子集
+          // [[],['红色'],['18cm'],['红色','18cm']]
+          const valueNamesPowerSet = bwPowerSet(valueNames)
+          // 遍历子集,插入pathMap
+          valueNamesPowerSet.forEach(item => {
+            const key = item.join('_')
+            if (pathMap[key]) {
+              pathMap[key].push(sku.id)
+            } else {
+              pathMap[key] = [sku.id]
+            }
+          })
+          console.log(pathMap)
+        }
+      })
+      return pathMap
+    }
+    getPathMap()
     return {
       select
     }

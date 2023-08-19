@@ -14,14 +14,16 @@ request.interceptors.request.use(
       config.headers.Authorization = `Bearer ${store.state.user.profile.token}`
     }
     return config
-  }, (error) => {
+  },
+  (error) => {
     return Promise.reject(error)
   }
 )
 request.interceptors.response.use(
   (response) => {
     return response.data
-  }, (error) => {
+  },
+  (error) => {
     console.log(error)
     const code = error.response.status
     if (code === 401) {
@@ -38,7 +40,7 @@ request.interceptors.response.use(
       // 跳转到之前的页面
       redirectLogin()
     }
-    return Promise.reject((error.message))
+    return Promise.reject(error.message)
   }
 )
 

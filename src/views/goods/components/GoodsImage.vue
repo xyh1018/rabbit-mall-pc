@@ -1,10 +1,13 @@
 <template>
   <div class="goods-image">
+    <!--图片放大容器-->
     <div v-show="show" class="large" :style="[{backgroundImage:`url(${images[currentIndex]})`},largePosition]"></div>
+    <!--大图容器-->
     <div ref="target" class="middle">
       <img :src="images[currentIndex]" alt="">
       <div v-show="show" class="layer" :style="layerPosition"></div>
     </div>
+    <!--小图容器-->
     <ul class="small">
       <li v-for="(item, index) in images" :key="index" :class="{active: index===currentIndex}">
         <img @mouseenter="currentIndex = index" :src="item" alt="">
@@ -39,6 +42,8 @@ export default {
       backgroundPositionX: '',
       backgroundPositionY: ''
     })
+    // elementX 鼠标相对于target容器的x轴坐标
+    // isOutside 鼠标是否在容器外
     const {
       elementX,
       elementY,
